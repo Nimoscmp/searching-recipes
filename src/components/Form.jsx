@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { CategoriesContext } from '../context/CategoriesContext';
 import { RecipesContext } from '../context/RecipesContext';
