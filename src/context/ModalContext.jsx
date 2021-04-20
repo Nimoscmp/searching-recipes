@@ -7,7 +7,8 @@ export const ModalContext = createContext();
 const ModalProvider = (props) => {
 
     const [recipeId, setRecipeId] = useState(null);
-    const [detailedRecipe, setDetailedRecipe] = useState([]);
+    const [detailedRecipe, setDetailedRecipe] = useState([0]);
+    const [modalLoaded, setModalLoaded] = useState(false);
 
     useEffect(() => {
         
@@ -17,13 +18,17 @@ const ModalProvider = (props) => {
             setDetailedRecipe(response.data.drinks);
         }
         
-        getApi();
+        if (recipeId !== null) {
+            getApi();
+        }
+
+        setModalLoaded(true);
         
     }, [recipeId])  
 
     return (  
         <ModalContext.Provider
-            value={{setRecipeId}}>
+            value={{setRecipeId, detailedRecipe, modalLoaded}}>
                 {props.children}
         </ModalContext.Provider>
     );

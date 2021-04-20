@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ModalContext } from '../context/ModalContext';
 import { RecipesContext } from '../context/RecipesContext'
+import Modal from './Modal';
 
 export default function RecipeList() {
 
@@ -9,6 +10,7 @@ export default function RecipeList() {
 
     return (
         <>
+        <Modal />
         <section className="row p-2 w-100 m-0">
             {consult?
             <h5 className="col-12 px-2 m-0 my-2">Se encontraron {resultRecipe.length} resultados:</h5>
@@ -31,6 +33,9 @@ export default function RecipeList() {
                             <span className="card-text mb-1">This is the {item.strDrink} recipe.</span>
                             <span className="text-success text-center"><strong>${Math.round(item.idDrink / 1000)}</strong></span>
                             <button
+                                type="button"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#ModalBox"
                                 className="btn btn-success"
                                 onClick={() => {setRecipeId(item.idDrink)} }>Ver detalles</button>
                         </div>
