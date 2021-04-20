@@ -30,16 +30,16 @@ export default function Form() {
     return (
         <>
             <form 
-                className="row"
+                className="row m-0 p-0 d-flex justify-content-center"
                 onSubmit={handleSubmit}>
-                <fieldset className="text-center col-12 p-0">
-                    <legend className="my-1">
+                <fieldset className="text-center col-11 p-0">
+                    <legend className="my-1 p-0">
                         Busca bebidas por categoría o ingrediente
                     </legend>
                 </fieldset>
 
-                <div className="col-11 col-md-5">
-                    <div className="input-group m-3">
+                <div className="col-11 col-md-5 m-1 ms-md-0 ms-lg-1 p-0">
+                    <div className="input-group">
                         <span className="input-group-text" id="name">Buscar</span>
                         <input 
                             type="text" 
@@ -52,8 +52,8 @@ export default function Form() {
                     </div>
                 </div>
 
-                <div className="col-11 col-md-5">
-                    <div className="input-group m-3 col-9 col-sm-5">
+                <div className="col-11 col-md-5 m-1 me-md-0 me-lg-1 p-0">
+                    <div className="input-group col-9 col-sm-5">
                         <label className="input-group-text" htmlFor="inputSelect">Opciones</label>
                         <select 
                             className="form-select" 
@@ -71,10 +71,10 @@ export default function Form() {
                     </div>
                 </div>
 
-                <div>
+                <div className="col-11 col-md-10 col-lg-auto m-1 p-0 d-flex justify-content-end">
                     <button 
                         type="submit" 
-                        className="btn btn-outline-primary m-3 col-11 col-md-auto"
+                        className="btn btn-outline-primary"
 
                         >Buscar recetas</button>
                 </div>
