@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
+import { ModalContext } from '../context/ModalContext';
 import { RecipesContext } from '../context/RecipesContext'
 
 export default function RecipeList() {
 
     const {resultRecipe, consult} = useContext(RecipesContext);
-
-    const handleSeeDetails = () => {
-
-    }
+    const {setRecipeId} = useContext(ModalContext);
 
     return (
         <>
@@ -28,14 +26,13 @@ export default function RecipeList() {
                             className="card-img-top rounded" 
                             alt={item.strDrinkThumb}
                             />
-                        <div className="card-body row">
-                            <h5 className="card-title text-center">{item.strDrink}</h5>
-                            <p className="card-text text-center">This is the {item.strDrink} recipe. </p>
-                            <p className="text-success text-center"><strong>${Math.round(item.idDrink / 1000)}</strong></p>
+                        <div className="card-body row d-flex flex-column align-items-start justify-content-start">
+                            <h6 className="card-title my-1 pb-3">{item.strDrink}</h6>
+                            <span className="card-text mb-1">This is the {item.strDrink} recipe.</span>
+                            <span className="text-success text-center"><strong>${Math.round(item.idDrink / 1000)}</strong></span>
                             <button
                                 className="btn btn-success"
-                                onClick={handleSeeDetails}>Ver detalles</button>
-                            {/* <a href="#" class="btn btn-primary">Go somewhere</a> */}
+                                onClick={() => {setRecipeId(item.idDrink)} }>Ver detalles</button>
                         </div>
                     </div>
                 ))}
