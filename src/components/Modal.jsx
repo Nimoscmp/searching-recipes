@@ -15,7 +15,7 @@ export default function Modal() {
         for (let i = 0; i < 16; i++) {
             if (array[`strIngredient${i}`]) {
                 ingredients.push(
-                <li>{array[`strIngredient${i}`]} ({array[`strMeasure${i}`] ? array[`strMeasure${i}`] : 'to taste'})</li>
+                <li key={array[`strIngredient${i}`]}>{array[`strIngredient${i}`]} ({array[`strMeasure${i}`] ? array[`strMeasure${i}`] : 'to taste'})</li>
                 );
             }
         }
@@ -42,19 +42,16 @@ export default function Modal() {
                             </div>
                             <div className="modal-body">
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src={detailedRecipe[0].strDrinkThumb} alt="{detailedRecipe[0].strDrinkThumb}" className="img-thumbnail img-mini"/>
+                                    <img src={detailedRecipe[0].strDrinkThumb} alt="{detailedRecipe[0].strDrinkThumb}" className="img-thumbnail img-mini rounded"/>
                                     <span className="text-secondary">{detailedRecipe[0].strCategory}</span>
                                 </div>
                                 <hr className="my-1"/>
                                 <p><strong>Ingredients:</strong></p>
                                 <ul>
-                                    {/* <li>{detailedRecipe[0].strIngredient1}</li>
-                                    <li>{detailedRecipe[0].strIngredient2}</li>
-                                    <li>{detailedRecipe[0].strIngredient3}</li> */}
                                     {showIngredients(detailedRecipe[0])}
                                 </ul>
                                 <p><strong>Instructions:</strong></p>
-                                <p>{detailedRecipe[0].strInstructions}</p>
+                                <p>{detailedRecipe[0].strInstructions ? detailedRecipe[0].strInstructions : 'Mix all softly'}</p>
                             </div>
                         </>
                         :
