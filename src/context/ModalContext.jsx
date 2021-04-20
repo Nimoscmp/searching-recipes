@@ -18,17 +18,23 @@ const ModalProvider = (props) => {
             setDetailedRecipe(response.data.drinks);
         }
         
-        if (recipeId !== null) {
-            getApi();
+        const setTrue = () => {
+            setTimeout(() => {
+                setModalLoaded(true);
+            }, 500);
         }
 
-        setModalLoaded(true);
+        if (recipeId !== null) {
+            getApi();
+            setTrue();
+        }
+
         
     }, [recipeId])  
 
     return (  
         <ModalContext.Provider
-            value={{setRecipeId, detailedRecipe, modalLoaded}}>
+            value={{setRecipeId, detailedRecipe, modalLoaded, setModalLoaded, setDetailedRecipe}}>
                 {props.children}
         </ModalContext.Provider>
     );

@@ -3,7 +3,25 @@ import { ModalContext } from '../context/ModalContext';
 
 export default function Modal() {
 
-    const {detailedRecipe, modalLoaded} = useContext(ModalContext);
+    const {detailedRecipe, modalLoaded, setModalLoaded, setDetailedRecipe} = useContext(ModalContext);
+
+    const handleClose = () => {
+        setDetailedRecipe([0]);
+        setModalLoaded(false);
+    }
+
+    const showIngredients = array => {
+        let ingredients = [];
+        for (let i = 0; i < 16; i++) {
+            if (array[`strIngredient${i}`]) {
+                ingredients.push(
+                <li>{array[`strIngredient${i}`]} ({array[`strMeasure${i}`] ? array[`strMeasure${i}`] : 'to taste'})</li>
+                );
+            }
+        }
+
+        return ingredients;
+    }
 
     return (
         <>
@@ -15,27 +33,28 @@ export default function Modal() {
                         <>
                             <div className="modal-header">
                                 <h5 className="modal-title text-success">{detailedRecipe[0].strDrink}</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button 
+                                    type="button" 
+                                    className="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"
+                                    onClick={handleClose}></button>
                             </div>
                             <div className="modal-body">
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src={detailedRecipe[0].strDrinkThumb} alt="{detailedRecipe[0].strDrinkThumb}" className="img-thumbnail"/>
+                                    <img src={detailedRecipe[0].strDrinkThumb} alt="{detailedRecipe[0].strDrinkThumb}" className="img-thumbnail img-mini"/>
                                     <span className="text-secondary">{detailedRecipe[0].strCategory}</span>
                                 </div>
-                                <hr/>
+                                <hr className="my-1"/>
                                 <p><strong>Ingredients:</strong></p>
                                 <ul>
-                                    <li>{detailedRecipe[0].strIngredient1}</li>
+                                    {/* <li>{detailedRecipe[0].strIngredient1}</li>
                                     <li>{detailedRecipe[0].strIngredient2}</li>
-                                    <li>{detailedRecipe[0].strIngredient3}</li>
+                                    <li>{detailedRecipe[0].strIngredient3}</li> */}
+                                    {showIngredients(detailedRecipe[0])}
                                 </ul>
                                 <p><strong>Instructions:</strong></p>
                                 <p>{detailedRecipe[0].strInstructions}</p>
-
-                            </div>
-                            <div className="modal-footer">
-                                {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button> */}
                             </div>
                         </>
                         :

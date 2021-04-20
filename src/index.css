@@ -17,6 +17,9 @@ code {
 .img-thumbnail{
     max-width: 200px !important;
 }
+.img-mini{
+    max-width: 125px !important;
+}
 
 #card-container{
     flex-wrap: wrap;
